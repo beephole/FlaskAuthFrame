@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      @import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
+      @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css"
+    />
+    <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
+    <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/html5shiv.js"></script>
+    <style>
+      .special-btn {
+        width: 150px; /* adjust as needed */
+        height: auto;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.3s ease-in-out; /* animates the transform properties */
+      }
+
+      .special-btn:hover {
+        transform: scale(1.05); /* increases the size by 5% on hover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header" id="header">
+      <div class="button-container">
+        <a href="{{url_for('index')}}"
+          ><img
+            class="special-btn"
+            src="{{ url_for('static', filename='assets/vendor/images/z.png') }}"
+        /></a>
+      </div>
+      <h3 class="site-header__title" data-lead-id="site-header-title">
+        Congrats!
+      </h3>
+    </header>
+
+    <div class="main-content">
+      <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+      <p class="main-content__body" data-lead-id="main-content-body">
+        Welcome to our application! After registering, we will send you an email
+        to verify your account. Please check your email for instructions on how
+        to proceed. Thank you very much for using our application.
+      </p>
+    </div>
+    <br />
+    <div>
+      <a href="https://gmail.com"> <i class="fa fa-envelope-o"></i> Gmail </a>
+      <a href="https://yahoo.com"> <i class="fa fa-envelope-o"></i> Yahoo </a>
+      <a href="https://outlook.live.com/owa/" target="fa fa-envelope-o">
+        <i class="fa fa-envelope"></i>Outlook
+      </a>
+    </div>
+
+    <footer class="site-footer" id="footer">
+      <p class="site-footer__fineprint" id="fineprint">
+        BestAi ©2023 | All Rights Reserved
+      </p>
+    </footer>
+  </body>
+</html>

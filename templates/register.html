@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Register</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+
+    <style>
+      body {
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .image-frame {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1; /* To keep behind the content */
+      }
+
+      .floating-image {
+        display: none;
+        position: fixed; /* Changed from position: absolute to avoid scrolling */
+        animation: float 10s ease-in-out infinite;
+        transform: translate3d(0, -100%, 0);
+
+        width: 200px; /* Adjust based on your need */
+        height: 250px; /* Adjust based on your need */
+      }
+      /* Keyframes of the floating animation */
+      .alert {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%; /* Change to 80% if you want the width to be 80% */
+        z-index: 9999; /* Any high value so that alert is over other elements */
+        text-align: center; /* Center the text */
+        padding: 1em;
+        border-radius: 30px;
+        background-color: rgba(49, 49, 49, 0.74);
+        color: rgb(255, 255, 255);
+        transition: all 0.5s ease;
+      }
+
+      .card {
+        box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        background-color: #ffffffb9; /* Your preferred card color */
+        width: 450px;
+        height: 690px;
+        overflow: none; /* add scroll if the content does not fit */
+        padding: 5vh;
+        box-sizing: border-box;
+        border-radius: 50px;
+      }
+      .card:hover {
+        box-shadow: 0px 0px 20px 2px rgba(21, 4, 172, 0.5);
+      }
+      .btn {
+        background: linear-gradient(to right, #4144ff9a, #ff4b2b93);
+        background-size: 200% 100%; /* required to achieve the movement effect */
+        border-radius: 20px;
+        border: none;
+        transition: all 0.4s ease-in-out; /* set the transition */
+      }
+
+      .btn:hover {
+        background-position: 100% 0; /* move the gradient when hover */
+      }
+      .form-group input {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 50px;
+        background-color: #f2f2f2da;
+      }
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 3em; /* add space at the top */
+      }
+      .special-btn {
+        width: 150px; /* adjust as needed */
+        height: auto;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.3s ease-in-out; /* animates the transform properties */
+      }
+
+      .special-btn:hover {
+        transform: scale(1.05); /* increases the size by 5% on hover */
+      }
+      button#left-icon {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: inherit;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        outline: none;
+      }
+
+      :root {
+        --text-color: black;
+        --background-color: rgba(255, 255, 255, 0.836);
+      }
+
+      body.dark-mode {
+        --text-color: rgb(206, 197, 197);
+        --background-color: rgba(7, 4, 4, 0.911);
+      }
+
+      body {
+        color: var(--text-color);
+        background-color: var(--background-color);
+      }
+
+      .card {
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+
+      /* Style for the dark mode button */
+      #dark-mode-toggle {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: inherit;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+      #dark-mode-toggle:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="alert alert-danger">
+    {% for message in messages %} {{ message }} {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+  <body class="dark-mode">
+    <div id="image-frame" class="image-frame"></div>
+    <a href="{{url_for('index')}}">
+      <button id="left-icon" title="Go to Index">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+    </a>
+
+    <button id="dark-mode-toggle" title="Toggle Dark Mode">
+      <i id="dark-mode-icon" class="far fa-moon"></i>
+    </button>
+    <div class="card">
+      <form action="{{ url_for('register') }}" method="post">
+        {{ register_form.csrf_token }}
+        <h2 class="text-center"><strong>Sign Up</strong></h2>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            name="{{ register_form.name.name }}"
+            placeholder="First Name"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            name="{{ register_form.surname.name }}"
+            placeholder="Last Name"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="email"
+            name="{{ register_form.email.name }}"
+            placeholder="E-mail"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="password"
+            name="{{ register_form.password.name }}"
+            placeholder="Password"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="password"
+            name="{{ register_form.password_confirm.name }}"
+            placeholder="Confirm Password"
+            value=""
+          />
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" />
+            I accept the terms and conditions
+          </label>
+        </div>
+        <br />
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" type="submit">
+            Register
+          </button>
+        </div>
+      </form>
+      <br />
+      <p>
+        Already have an account?<a
+          href="{{ url_for('login') }}"
+          class="already"
+        >
+          Login
+        </a>
+      </p>
+      <div class="button-container">
+        <a href="#"
+          ><img
+            class="special-btn"
+            src="{{ url_for('static', filename='assets/vendor/images/z.png') }}"
+        /></a>
+      </div>
+    </div>
+    <footer
+      style="position: absolute; bottom: 0; width: 100%; text-align: center"
+    >
+      <p>&copy; Beephole 2023</p>
+    </footer>
+    <script src="{{ url_for('static', filename='assets/vendor/js/main.js') }}"></script>
+    <script>
+      window.onload = function () {
+        setTimeout(function () {
+          let alertDiv = document.querySelector(".alert");
+          if (alertDiv) alertDiv.style.display = "none";
+        }, 5000);
+      };
+    </script>
+  </body>
+</html>
