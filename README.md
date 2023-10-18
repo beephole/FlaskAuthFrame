@@ -15,6 +15,14 @@
 
 ---
 
+## 🎬Live Demo
+
+You can see a live demo of the application running at [FLASKAUTHFRAME](http://auth.pythonanywhere.com)
+
+---
+https://github.com/beephole/FlaskAuthFrame/assets/118709832/9dc2dedb-d27e-4910-b2b4-c56bd51c1cfc
+
+
 ## 📖 Table of Contents
 
 - [📖 Table of Contents](#-table-of-contents)
@@ -32,9 +40,7 @@
 
 ---
 
-## 🎬 Demo
 
-You can see a live demo of the application running at [FLASKAUTHFRAME](http://auth.pythonanywhere.com)
 
 ---
 
