@@ -140,7 +140,9 @@ Server will run at http://127.0.0.1:5000
 
 https://github.com/beephole/FlaskAuthFrame/assets/118709832/bb34d375-7b47-4c90-ba59-9fe7430ab5d0
 
+> For first time registering users Try it with 2 or 3 diff emails ,  gmail verificaiton email "
 
+> note that you have to confim the links in gmail in browser if running locally , on phone you need to open a tunnel with ngrok for testing
 ## 📂 Repository Structure
 
 ```sh
